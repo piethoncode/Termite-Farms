@@ -1,6 +1,27 @@
-<html>
- <body>
-  <iframe src="http://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1?controls=0"
-   width="1260" height="615" frameborder="0" allowfullscreen></iframe>
- </body>
-</html>
+<!DOCTYPE HTML>
+<head>
+   <meta http-equiv="refresh" content="5; URL=about:blank">
+   <title>Tothpaste</title>
+   <div class = video>
+      <video id="my-video" src="/video.mp4">
+   </div>
+</head>
+<body>
+   <div id="foot">
+      <p><em>No audio?</em> Some browsers block autoplay for unmuted videos, in which case we play them muted.</p>
+   </div>
+</body>
+<style>
+   @import "stylesheet.css";
+</style>
+<script> const myVideo = document.getElementById('my-video');
+   // Not all browsers return promise from .play().
+   const playPromise = myVideo.play() || Promise.reject('');
+   playPromise.then(() => {
+     // Video could be autoplayed, do nothing.
+   }).catch(err => {
+     // Video couldn't be autoplayed because of autoplay policy. Mute it and play.
+     myVideo.muted = true;
+     myVideo.play();
+   }); 
+</script>
